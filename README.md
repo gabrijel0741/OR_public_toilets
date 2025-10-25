@@ -40,8 +40,3 @@ Open Computing - Repository for laboratory exercises
 - **review_comment** = comment which the user gave for the toilet  
 
 ---
-
-## License
-
-This dataset is released under **CC0 1.0 Universal (CC0 1.0) Public Domain Dedication**.  
-This means you can freely **copy, modify, distribute, and use the data for any purpose**, including commercial use, **without asking permission or giving credit** to the author.
