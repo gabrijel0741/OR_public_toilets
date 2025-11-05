@@ -1,24 +1,24 @@
-toilet_id,review_user,review_user_rating,review_comment
-1,marko.polo,5,"A very clean and well-maintained facility."
-1,ana.markovic12,4,"Great space, but it is crowded at times"
-2,ivanakovac123,4,"Tidy"
-3,marinela_barenic5123,3,"Very clean, but sometimes out of toilet paper."
-4,petra.horvat7201,2,"It is messy like a bomb exploded inside."
-4,lukaaa.babic55,4,"Available and clean."
-4,majaNovak,3,"Basic experience, nothing special."
-5,sara_housek,5,"Modern space, greatly maintained."
-5,ivan.matenic2,4,"Regular maintenance."
-5,miaPolic,4,"I advise it."
-5,iljasMarino5,5,"Best public toilet in this city!"
-5,emaJovinac72,4,"It is okay"
-6,karlo.pirlanic99,1,"Stinks very badly, avoid if you can."
-6,lana_nimola,2,"There is no regular maintenance and that is obvious..."
-7,mirnaHiljac0124,4,"Good balance between cleanliness and availability."
-7,livonda_ante6,5,"Always clean and well-stocked."
-7,anica.pakulin,5,"Great spot for refreshment."
-8,cic.irma372,4,"I like that it has toilets for disabled people."
-8,jepan_luvarda8,4,"Could be a little cleaner."
-9,anka_anka123,4,"Clean."
-9,zvonko_burinic_32,3,"Too crowded!"
-10,tina.turlovic83,5,"Regularly cleaned and always has paper."
-10,roko_mirtic1993,5,"A pretty big, well maintained toilet space."
+review_id, review_user, review_user_rating, review_comment, toilet_id
+1,marko.polo,5,"A very clean and well-maintained facility.",1
+2,ana.markovic12,4,"Great space, but it is crowded at times",1
+3,ivanakovac123,4,"Tidy",2
+4,marinela_barenic5123,3,"Very clean, but sometimes out of toilet paper.",3
+5,petra.horvat7201,2,"It is messy like a bomb exploded inside.",4
+6,lukaaa.babic55,4,"Available and clean.",4
+7,majaNovak,3,"Basic experience, nothing special.",4
+8,sara_housek,5,"Modern space, greatly maintained.",5
+9,ivan.matenic2,4,"Regular maintenance.",5
+10,miaPolic,4,"I advise it.",5
+11,iljasMarino5,5,"Best public toilet in this city!",5
+12,emaJovinac72,4,"It is okay",5
+13,karlo.pirlanic99,1,"Stinks very badly, avoid if you can.",6
+14,lana_nimola,2,"There is no regular maintenance and that is obvious...",6
+15,mirnaHiljac0124,4,"Good balance between cleanliness and availability.",7
+16,livonda_ante6,5,"Always clean and well-stocked.",7
+17,anica.pakulin,5,"Great spot for refreshment.",7
+18,cic.irma372,4,"I like that it has toilets for disabled people.",8
+19,jepan_luvarda8,4,"Could be a little cleaner.",8
+20,anka_anka123,4,"Clean.",9
+21,zvonko_burinic_32,3,"Too crowded!",9
+22,tina.turlovic83,5,"Regularly cleaned and always has paper.",10
+23,roko_mirtic1993,5,"A pretty big, well maintained toilet space.",10
