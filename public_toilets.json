@@ -1,7 +1,7 @@
 {
     "toilets": [
         {
-            "id": 1,
+            "toilet_id": 1,
             "name": "Javni Toalet Trešnjevka",
             "address": "Nova Cesta 72",
             "city": "Zagreb",
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "id": 2,
+            "toilet_id": 2,
             "name": "Javni Toalet Centar",
             "address": "Trg Bana Jelačića 1",
             "city": "Zagreb",
@@ -66,7 +66,7 @@
             ]
         },
         {
-            "id": 3,
+            "toilet_id": 3,
             "name": "Javni Toalet Maksimir",
             "address": "Petrova Ulica 27",
             "city": "Zagreb",
@@ -96,7 +96,7 @@
             ]
         },
         {
-            "id": 4,
+            "toilet_id": 4,
             "name": "Javni Toalet Jarun",
             "address": "Ulica Bernarda Vukasa Bajde 5",
             "city": "Zagreb",
@@ -136,7 +136,7 @@
             ]
         },
         {
-            "id": 5,
+            "toilet_id": 5,
             "name": "Javni Toalet Kruge",
             "address": "Ulica Pile II 33",
             "city": "Zagreb",
@@ -187,7 +187,7 @@
 
         },
         {
-            "id": 6,
+            "toilet_id": 6,
             "name": "Javni Toalet Peščenica",
             "address": "Žažinska ulica 4",
             "city": "Zagreb",
@@ -222,7 +222,7 @@
             ]
         },
         {
-            "id": 7,
+            "toilet_id": 7,
             "name": "Javni Toalet Jankomir",
             "address": "Ulica Kreše Golika 51",
             "city": "Zagreb",
@@ -262,7 +262,7 @@
             ]
         },
         {
-            "id": 8,
+            "toilet_id": 8,
             "name": "Javni Toalet Vrapče",
             "address": "Hladnička Ulica 1",
             "city": "Zagreb",
@@ -297,7 +297,7 @@
             ]
         },
         {
-            "id": 9,
+            "toilet_id": 9,
             "name": "Javni Toalet Gornja Dubrava",
             "address": "Trbovljanska Ulica 34",
             "city": "Zagreb",
@@ -332,7 +332,7 @@
             ]
         },
         {
-            "id": 10,
+            "toilet_id": 10,
             "name": "Javni Toalet Šalata",
             "address": "Voćarska cesta 99",
             "city": "Zagreb",
