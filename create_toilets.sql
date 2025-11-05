@@ -35,7 +35,7 @@ COPY toilets (
 FROM 'insert/path/to/csv_table_of_public_toilets_downloaded.csv'
 WITH (FORMAT csv, HEADER true, QUOTE '"', ESCAPE '"');
 
-COPY toilets (
+COPY reviews (
   toilet_id, review_user, review_user_rating, review_comment
 )
 FROM 'insert/path/to/csv_table_of_public_toilets_reviews_downloaded.csv'
