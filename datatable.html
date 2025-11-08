@@ -72,6 +72,25 @@
         .filter-select:hover{
             opacity: 90%;
         }
+
+        .toilets-table{
+            border-spacing: 0px;
+        }
+
+        .toilets-table thead tr td{
+            border-bottom: 1px solid black;
+            padding: 16px;
+        }
+        .toilets-table tbody tr td{
+            border: 1px solid rgb(200, 200, 200);
+            padding: 16px;
+        }
+        .toilets-table tbody tr:nth-child(even){
+            background-color: #e1e0e0;
+        }
+        .toilets-table tbody tr:nth-child(odd){
+            background-color: white;
+        }
     </style>
 
     <script>
@@ -135,6 +154,56 @@
 
         filterRows();
 
+        async function downloadCSV() {
+            let headers = Object.keys(currentData[0])
+            let rows = [];
+            rows.push(headers.join(','));
+
+            for (let row of currentData) {
+                let values = headers.map(header => {
+                    let value = row[header]
+                    if (value === null || value === undefined) {
+                        value = '';
+                    } else if (typeof value === 'boolean') {
+                        value = value ? 'true' : 'false';
+                    } else if (typeof value === 'string'){
+                        value = '"' + value + '"';
+                    }
+                    return value
+                });
+
+                rows.push(values.join(','));
+            }
+
+            let csvData = rows.join('\n');
+
+            const blob = new Blob([csvData], {
+                type: "text/csv",
+            });
+
+            const url = URL.createObjectURL(blob);
+            const tempLink = document.createElement('a');
+            tempLink.href = url;
+            tempLink.download = 'filtered_toilets.csv';
+            tempLink.click();
+            tempLink.remove()
+            URL.revokeObjectURL(url);
+        }
+
+        async function downloadJSON() {
+            const blob = new Blob([JSON.stringify(currentData, null, 2)], {
+                type: "text/json",
+            });
+
+            const url = URL.createObjectURL(blob);
+            const tempLink = document.createElement('a');
+            tempLink.href = url;
+            tempLink.download = 'filtered_toilets.json';
+            tempLink.click();
+            tempLink.remove()
+            URL.revokeObjectURL(url);
+        }
+
     </script>
 </head>
 
@@ -144,8 +213,8 @@
             <div class="naslov-dwnlds">
                 <h1 style="font-size: xx-large;">OR Public Toilets</h1>
                 <div class="dwnlds-div">
-                    <button class="csv-dwnld-link" href="public_toilets.csv" download>Download Filtered CSV</button>
-                    <button class="json-dwnld-link" href="public_toilets.json" download>Download Filtered JSON</button>
+                    <button class="csv-dwnld-link" onclick=downloadCSV()>Download Filtered CSV</button>
+                    <button class="json-dwnld-link" onclick=downloadJSON()>Download Filtered JSON</button>
                     <a class="table-redirect" href="index.html">Back to main page</a>
             </div>
         </div>
