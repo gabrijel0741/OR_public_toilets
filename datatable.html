@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<head>
+    <title>OR Public Toilets Data (CSV / JSON)</title>
+    <meta name="description" content="An open dataset about public toilets in the city of Zagreb, Croatia. Available in CSV and JSON format.">
+    <meta name="keywords" content="public toilets, toilets dataset, csv, json, open data">
+    <meta name="author" content="Gabrijel Krizmanić">
+
+    <link rel="alternate" type="text/csv" href="public_toilets.csv" title="Public toilets (CSV)">
+    <link rel="alternate" type="application/json" href="public_toilets.json" title="Public toilets (JSON)">
+
+    <style>
+        body{
+            background-color: #e1e0e0;
+        }
+        .naslov-dwnlds{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 160px;
+            align-items: center;
+        }
+        .dwnlds-div{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 24px !important;
+            width:480px;
+        }
+        .csv-dwnld-link, .json-dwnld-link, .table-redirect{
+            width: 120px;
+            background-color: gray;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+            border: none;
+        }
+        .csv-dwnld-link:hover, .json-dwnld-link:hover, .table-redirect:hover{
+            opacity: 90%;
+        }
+        .search{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 8px;
+            margin: 12px;
+        }
+        .search-input{
+            width: 30%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .search-button{
+            width: 80px;
+            justify-content: center;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .search-button:hover{
+            opacity: 75%;
+        }
+        .filter-select{
+            margin:12px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .filter-select:hover{
+            opacity: 90%;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            filterRows();
+        });
+
+        let currentData = [];
+
+        async function filterRows() {
+            let input = document.querySelector(".search-input");
+            let select = document.querySelector(".filter-select");
+            let tableBody = document.querySelector(".toilets-table tbody");
+
+            let filter = input.value;
+            let filter_parameters = select.value;
+
+            let url = "http://localhost:3000/database?filter=" + filter + "&filter_parameters=" + filter_parameters
+            
+            try {
+                fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    currentData = data
+                    tableBody.innerHTML = '';
+                    data.forEach(toilet => {
+                        const toilet_row = 
+                        "<tr>" +
+                            "<td>" + toilet.toilet_id + "</td>" +
+                            "<td>" + toilet.review_id + "</td>" +
+                            "<td>" + toilet.review_user + "</td>" +
+                            "<td>" + toilet.review_user_rating + "</td>" +
+                            "<td>" + toilet.review_comment + "</td>" +
+                            "<td>" + toilet.name + "</td>" +
+                            "<td>" + toilet.address + "</td>" +
+                            "<td>" + toilet.city + "</td>" +
+                            "<td>" + toilet.postal_code + "</td>" +
+                            "<td>" + toilet.latitude + "</td>" +
+                            "<td>" + toilet.longitude + "</td>" +
+                            "<td>" + toilet.working_hours + "</td>" +
+                            "<td>" + toilet.unisex + "</td>" +
+                            "<td>" + toilet.baby_changing_station + "</td>" +
+                            "<td>" + toilet.toilets_for_disabled + "</td>" +
+                            "<td>" + toilet.regular_toilets + "</td>" +
+                            "<td>" + toilet.urinals + "</td>" +
+                            "<td>" + toilet.disabled_toilets + "</td>" +
+                            "<td>" + toilet.maintenance + "</td>" +
+                            "<td>" + toilet.last_date_renovated + "</td>" +
+                            "<td>" + toilet.free_of_charge + "</td>" +
+                            "<td>" + toilet.fee_amount + "</td>" +                          
+                        "</tr>";
+                        tableBody.innerHTML += toilet_row;
+                    })
+                })
+                .catch(err => console.error("Greška:", err));
+            } catch (err) {
+                console.error("Greška pri dohvaćanju podataka:", err);
+            }
+
+        }
+
+        filterRows();
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="naslov-dwnlds">
+                <h1 style="font-size: xx-large;">OR Public Toilets</h1>
+                <div class="dwnlds-div">
+                    <button class="csv-dwnld-link" href="public_toilets.csv" download>Download Filtered CSV</button>
+                    <button class="json-dwnld-link" href="public_toilets.json" download>Download Filtered JSON</button>
+                    <a class="table-redirect" href="index.html">Back to main page</a>
+            </div>
+        </div>
+        <div class="filter-and-table-div">
+            <div>
+                <div class='search-skupovi-div'>
+                    <div class="search">
+                        <input type="text" placeholder="Unesite naziv skupa podataka" class = "search-input"/>
+                        <button class="search-button" type = "button" onclick="filterRows()">Search</button>
+                    </div>
+                </div>
+                <select class="filter-select">
+                    <option value="all values" selected>All values</option>
+                    <option value="name">Name</option>
+                    <option value="address">Address</option>
+                    <option value="city">City</option>
+                    <option value="postal_code">Postal Code</option>
+                    <option value="latitude">Latitude</option>
+                    <option value="longitude">Longitude</option>
+                    <option value="working_hours">Working Hours</option>
+                    <option value="regular_toilets">Regular Toilets</option>
+                    <option value="urinals">Urinals</option>
+                    <option value="disabled_toilets">Disabled Toilets</option>
+                    <option value="fee_amount">Fee Amount</option>
+                    <option value="review_user">Review User</option>
+                    <option value="review_user_rating">Review User Rating</option>
+                    <option value="review_comment">Review Comment</option>
+                </select>
+            </div>
+            <table class="toilets-table">
+                <thead>
+                    <tr>
+                        <td>Toilet ID</td>
+                        <td>Review ID</td>
+                        <td>Review User</td>
+                        <td>Review User Rating</td>
+                        <td>Review Comment</td>
+                        <td>Name</td>
+                        <td>Address</td>
+                        <td>City</td>
+                        <td>Postal Code</td>
+                        <td>Latitude</td>
+                        <td>Longitude</td>
+                        <td>Working Hours</td>
+                        <td>Unisex</td>
+                        <td>Baby Changing Station</td>
+                        <td>Toilets For Disabled</td>
+                        <td>Regular Toilets</td>
+                        <td>Urinals</td>
+                        <td>Disabled Toilets</td>
+                        <td>Maintenance</td>
+                        <td>Last Date Renovated</td>
+                        <td>Free Of Charge</td>
+                        <td>Fee Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </div> 
+</body>
