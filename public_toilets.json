@@ -21,7 +21,6 @@
             "last_date_renovated": "17-08-2023",
             "free_of_charge": true,
             "fee_amount": 0.0,
-            "average_review_rating": 4.5,
             "reviews": [
                 {
                     "user": "marko.polo",
@@ -56,7 +55,6 @@
             "last_date_renovated": "23-05-2024",
             "free_of_charge": false,
             "fee_amount": 1.0,
-            "average_review_rating": 4.0,
             "reviews": [
                 {
                     "user": "ivanakovac123",
@@ -86,7 +84,6 @@
             "last_date_renovated": "12-09-2022",
             "free_of_charge": true,
             "fee_amount": 0.0,
-            "average_review_rating": 3.0,
             "reviews": [
                 {
                     "user": "marinela_barenic5123",
@@ -116,7 +113,6 @@
             "last_date_renovated": "05-11-2023",
             "free_of_charge": false,
             "fee_amount": 0.5,
-            "average_review_rating": 3.0,
             "reviews": [
                 {
                     "user": "petra.horvat7201",
@@ -156,7 +152,6 @@
             "last_date_renovated": "30-03-2024",
             "free_of_charge": false,
             "fee_amount": 0.6,
-            "average_review_rating": 4.4,
             "reviews": [
                 {
                     "user": "sara_housek",
@@ -207,7 +202,6 @@
             "last_date_renovated": "15-07-2020",
             "free_of_charge": true,
             "fee_amount": 0.0,
-            "average_review_rating": 1.5,
             "reviews": [
                 {
                     "user": "karlo.pirlanic99",
@@ -242,7 +236,6 @@
             "last_date_renovated": "20-10-2021",
             "free_of_charge": false,
             "fee_amount": 0.8,
-            "average_review_rating": 4.7,
             "reviews": [
                 {
                     "user": "mirnaHiljac0124",
@@ -282,7 +275,6 @@
             "last_date_renovated": "17-10-2023",
             "free_of_charge": true,
             "fee_amount": 0.0,
-            "average_review_rating": 2.8,
             "reviews": [
                 {
                     "user": "jucic.irma372",
@@ -317,7 +309,6 @@
             "last_date_renovated": "11-12-2023",
             "free_of_charge": true,
             "fee_amount": 0.0,
-            "average_review_rating": 3.5,
             "reviews": [
                 {
                     "user": "anka_anka123",
@@ -352,7 +343,6 @@
             "last_date_renovated": "01-04-2024",
             "free_of_charge": false,
             "fee_amount": 1.2,
-            "average_review_rating": 5.0,
             "reviews": [
                 {
                     "user": "tina.turlovic83",

@@ -1,0 +1,127 @@
+{
+  "$id": "https://github.com/gabrijel0741/OR_public_toilets/blob/main/public_toilets.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Public Toilets Open Dataset",
+  "description": "An open dataset about public toilets in the city of Zagreb, Croatia. Available in CSV and JSON format.",
+  "type": "object",
+  "properties": {
+    "toilet_id": {
+      "type": "integer",
+      "description": "Id of the public toilet"
+    },
+    "review_id": {
+      "type": "integer",
+      "description": "Id of the review"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the public toilet"
+    },
+    "address": {
+      "type": "string",
+      "description": "Address of where the toilet is located"
+    },
+    "city": {
+      "type": "string",
+      "description": "City where the toilet is located"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "Postal code of the city"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "North-south position"
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "West-east position"
+    },
+    "working_hours": {
+      "type": "string",
+      "description": "Time of the day when the toilet is available"
+    },
+    "unisex": {
+      "type": "boolean",
+      "description": "Do male and female genders use the same facilities  "
+    },
+    "baby_changing_station": {
+      "type": "boolean",
+      "description": "Does the toilet contain a room for changing baby diapers"
+    },
+    "toilets_for_disabled": {
+      "type": "boolean",
+      "description": "Does the toilet contain toilets for disabled people"
+    },
+    "regular_toilets": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many regular toilets are there"
+    },
+    "urinals": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many urinals are there"
+    },
+    "disabled_toilets": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many toilets for disabled people are there"
+    },
+    "maintenance": {
+      "type": "string",
+      "description": "How often does the staff replenish consumables and clean the space"
+    },
+    "last_date_renovated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last date of renovation"
+    },
+    "free_of_charge": {
+      "type": "boolean",
+      "description": "Is the use of the public toilet free"
+    },
+    "fee_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "How much do you have to pay to use the toilets"
+    },
+    "review_user": {
+      "type": "string",
+      "description": "Username of the reviewer"
+    },
+    "review_user_rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Rating which the user gave for the toilet"
+    },
+    "review_comment": {
+      "type": "string",
+      "description": "Comment which the user gave for the toilet"
+    }
+  },
+
+  "required": [
+    "toilet_id",
+    "name",
+    "address",
+    "city",
+    "postal_code",
+    "latitude",
+    "longitude",
+    "working_hours",
+    "unisex",
+    "baby_changing_station",
+    "toilets_for_disabled",
+    "regular_toilets",
+    "urinals",
+    "disabled_toilets",
+    "maintenance",
+    "free_of_charge"
+  ]
+}

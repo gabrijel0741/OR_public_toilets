@@ -16,7 +16,7 @@ Open Computing - Repository for laboratory exercises
 
 ## Attribute description
 
-- **id** = id of the public toilet  
+- **toilet_id** = id of the public toilet  
 - **name** = name of the public toilet  
 - **address** = address of where the toilet is located  
 - **city** = city where the toilet is located  
@@ -33,10 +33,10 @@ Open Computing - Repository for laboratory exercises
 - **maintenance** = how often does the staff replenish consumables and clean the space  
 - **last_date_renovated** = last date of renovation  
 - **free_of_charge** = is the use of the public toilet free  
-- **fee_amount** = how much do you have to pay to use the toilets  
-- **average_review_rating** = average rating of all the reviews for this toilet  
+- **fee_amount** = how much do you have to pay to use the toilets 
 - **review_user** = username of the reviewer  
 - **review_user_rating** = rating which the user gave for the toilet  
-- **review_comment** = comment which the user gave for the toilet  
+- **review_comment** = comment which the user gave for the toilet 
+- **review_id** = id of the review 
 
 ---
