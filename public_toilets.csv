@@ -1,11 +1,11 @@
 ﻿toilet_id,name,address,city,postal_code,latitude,longitude,working_hours,unisex,baby_changing_station,toilets_for_disabled,regular_toilets,urinals,disabled_toilets,maintenance,last_date_renovated,free_of_charge,fee_amount
-1,Javni Toalet Trešnjevka,Nova Cesta 72,Zagreb,10000,45.803,15.955,08:00 - 20:00,True,False,True,8,0,1,two times a week,17-08-2023,True,0.0
-2,Javni Toalet Centar,Trg Bana Jelačića 1,Zagreb,10000,45.8131,15.9764,24/7,True,True,True,10,0,2,daily,23-05-2024,False,1.0
-3,Javni Toalet Maksimir,Petrova Ulica 27,Zagreb,10000,45.8173,15.9961,08:00 - 18:00,False,True,False,14,6,0,weekly,12-09-2022,True,0.0
-4,Javni Toalet Jarun,Ulica Bernarda Vukasa Bajde 5,Zagreb,10000,45.7871,15.9348,09:00 - 21:00,False,False,True,10,3,2,three times a week,05-11-2023,False,0.5
-5,Javni Toalet Kruge,Ulica Pile II 33,Zagreb,10000,45.7977,15.9919,10:00 - 22:00,True,True,True,6,0,1,daily,30-03-2024,False,0.6
-6,Javni Toalet Peščenica,Žažinska ulica 4,Zagreb,10000,45.7907,16.0239,24/7,True,False,False,4,0,0,monthly,15-07-2020,True,0.0
-7,Javni Toalet Jankomir,Ulica Kreše Golika 51,Zagreb,10000,45.8057,15.8649,07:00 - 19:00,False,True,True,12,4,2,two times a week,20-10-2021,False,0.8
-8,Javni Toalet Vrapče,Hladnička Ulica 1,Zagreb,10000,45.8117,15.897,24/7,False,False,True,8,3,3,weekly,17-10-2023,True,0.0
-9,Javni Toalet Gornja Dubrava,Trbovljanska Ulica 34,Zagreb,10000,45.8321,16.0399,06:00 - 22:00,False,True,False,9,2,0,daily,11-12-2023,True,0.0
-10,Javni Toalet Šalata,Voćarska cesta 99,Zagreb,10000,45.8225,15.9858,09:00 - 23:00,False,True,True,15,5,3,daily,01-04-2024,False,1.2
+1,Javni Toalet Trešnjevka,Nova Cesta 72,Zagreb,10000,45.803,15.955,08:00 - 20:00,True,False,True,8,0,1,two times a week,2023-08-17,True,0.0
+2,Javni Toalet Centar,Trg Bana Jelačića 1,Zagreb,10000,45.8131,15.9764,24/7,True,True,True,10,0,2,daily,2024-05-23,False,1.0
+3,Javni Toalet Maksimir,Petrova Ulica 27,Zagreb,10000,45.8173,15.9961,08:00 - 18:00,False,True,False,14,6,0,weekly,2022-09-12,True,0.0
+4,Javni Toalet Jarun,Ulica Bernarda Vukasa Bajde 5,Zagreb,10000,45.7871,15.9348,09:00 - 21:00,False,False,True,10,3,2,three times a week,2023-11-05,False,0.5
+5,Javni Toalet Kruge,Ulica Pile II 33,Zagreb,10000,45.7977,15.9919,10:00 - 22:00,True,True,True,6,0,1,daily,2024-03-30,False,0.6
+6,Javni Toalet Peščenica,Žažinska ulica 4,Zagreb,10000,45.7907,16.0239,24/7,True,False,False,4,0,0,monthly,2020-07-15,True,0.0
+7,Javni Toalet Jankomir,Ulica Kreše Golika 51,Zagreb,10000,45.8057,15.8649,07:00 - 19:00,False,True,True,12,4,2,two times a week,2021-10-20,False,0.8
+8,Javni Toalet Vrapče,Hladnička Ulica 1,Zagreb,10000,45.8117,15.897,24/7,False,False,True,8,3,3,weekly,2023-10-17,True,0.0
+9,Javni Toalet Gornja Dubrava,Trbovljanska Ulica 34,Zagreb,10000,45.8321,16.0399,06:00 - 22:00,False,True,False,9,2,0,daily,2023-12-11,True,0.0
+10,Javni Toalet Šalata,Voćarska cesta 99,Zagreb,10000,45.8225,15.9858,09:00 - 23:00,False,True,True,15,5,3,daily,2024-04-01,False,1.2
