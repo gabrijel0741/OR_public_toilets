@@ -1,0 +1,1041 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Public Toilets API",
+    "version": "1.0.0",
+    "description": "REST API specification for public toilets and their reviews",
+    "contact": {
+      "name": "Gabrijel Krizmanić",
+      "email": "gabrijel.krizmanic@gmail.com"
+    },
+    "license": {
+      "name": "CC0 1.0 Universal (Public Domain Dedication)",
+      "url": "https://github.com/gabrijel0741/OR_public_toilets/blob/main/LICENSE"
+    }
+  },
+  "paths": {
+    "/api/v1/toilets": {
+      "get": {
+        "summary": "Fetch all the public toilets with their reviews",
+        "responses": {
+          "200": {
+            "description": "A list of public toilets with their reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All toilets found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/ToiletWithReview"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No public toilets have been found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No toilets found"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new public toilet",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/definitions/Toilet" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully registered a new toilet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully registered a new toilet"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Toilet could not be registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Bad request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Postal code length exceeds 5 characters"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing public toilet",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/definitions/Toilet" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully updated an existing toilet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully updated an existing toilet"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Toilet could not be updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Bad request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Postal code length exceeds 5 characters"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/toilets/{id}": {
+      "get": {
+        "summary": "Fetch the public toilet and its reviews by the toilet ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public toilet and its reviews based on the given toilet ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "A list of all public toilets with given ID have been found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/ToiletWithReview"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Public toilet with the given toilet ID doesn't exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Public toilet with the given toilet ID doesn't exist"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete the public toilet and its reviews by the toilet ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public toilet and its reviews based on the given toilet ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "A list of all public toilets with given ID have been found"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "deletedToilet": {
+                          "type": "object",
+                          "items": {
+                            "$ref": "#/definitions/Toilet"
+                          }
+                        },
+                        "deletedReviews": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Review"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Public toilet with the given toilet ID doesn't exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Public toilet with the given toilet ID doesn't exist"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/toilets_by_city/{city_name}": {
+      "get": {
+        "summary": "Fetch all the public toilets in the chosen city",
+        "parameters": [
+          { "name": "city_name", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of all the public toilets in the chosen city",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "A list of all public toilets for the chosen city have been found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No public toilets have been found in the chosen city",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No public toilets have been found in the chosen city"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/toilets_by_postal_code/{postal_code}": {
+      "get": {
+        "summary": "Fetch all the public toilets by a postal code",
+        "parameters": [
+          { "name": "postal_code", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of all the public toilets by the given postal code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "A list of all public toilets for the chosen postal code have been found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No public toilets have been found by the given postal code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No public toilets have been found by the given postal code"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/toilets_for_disabled": {
+      "get": {
+        "summary": "Fetch all the public toilets which have toilets for disabled people",
+        "responses": {
+          "200": {
+            "description": "A list of all the public toilets which have a toilet for disabled people",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All toilets for disabled people found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No public toilets for disabled people have been found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No public toilets for disabled people have been found"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/toilets_with_baby_station": {
+      "get": {
+        "summary": "Fetch all the public toilets which have a baby changing station",
+        "responses": {
+          "200": {
+            "description": "A list of all the public toilets which have a baby changing station",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All toilets with baby stations found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Toilet"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No public toilets with baby changing stations have been found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No public toilets with baby changing stations have been found"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reviews": {
+      "get": {
+        "summary": "Fetch all existing reviews",
+        "responses": {
+          "200": {
+            "description": "A list of all reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "All reviews found"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Review"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No reviews have been found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Not found"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "No reviews have been found"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new review",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/definitions/ReviewInput" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully added a new review",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully added a new review"
+                    },
+                    "response": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Review"
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Review could not be added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Bad request"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Toilet with the given toilet_id doesn't exist"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Service unavailable"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Interval server error"
+                    },
+                    "response": {
+                      "type": "string",
+                      "example": "null"
+                    }
+                  },
+                  "required": ["status", "message", "response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+      "Toilet": {
+        "type": "object",
+        "properties": {
+          "toilet_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "city": { "type": "string" },
+          "postal_code": { "type": "string" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "working_hours": { "type": "string" },
+          "unisex": { "type": "boolean" },
+          "baby_changing_station": { "type": "boolean" },
+          "toilets_for_disabled": { "type": "boolean" },
+          "regular_toilets": { "type": "integer" },
+          "urinals": { "type": "integer" },
+          "disabled_toilets": { "type": "integer" },
+          "maintenance": { "type": "string" },
+          "last_date_renovated": { "type": "string", "format": "date" },
+          "free_of_charge": { "type": "boolean" },
+          "fee_amount": { "type": "number" }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "review_id": { "type": "integer" },
+          "review_user": { "type": "string" },
+          "review_user_rating": { "type": "integer" },
+          "review_comment": { "type": "string" },
+          "toilet_id": { "type": "integer" }
+        }
+      },
+      "ReviewInput": {
+        "type": "object",
+        "required": ["review_user","review_user_rating","toilet_id"],
+        "properties": {
+          "review_user": { "type": "string" },
+          "review_user_rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "review_comment": { "type": "string" },
+          "toilet_id": { "type": "integer" }
+        }
+      },
+      "ToiletWithReview": {
+        "type": "object",
+        "required": ["review_user","review_user_rating","toilet_id"],
+        "properties": {
+          "toilet_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "city": { "type": "string" },
+          "postal_code": { "type": "string" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "working_hours": { "type": "string" },
+          "unisex": { "type": "boolean" },
+          "baby_changing_station": { "type": "boolean" },
+          "toilets_for_disabled": { "type": "boolean" },
+          "regular_toilets": { "type": "integer" },
+          "urinals": { "type": "integer" },
+          "disabled_toilets": { "type": "integer" },
+          "maintenance": { "type": "string" },
+          "last_date_renovated": { "type": "string", "format": "date" },
+          "free_of_charge": { "type": "boolean" },
+          "fee_amount": { "type": "number" },
+          "review_user": { "type": "string" },
+          "review_user_rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "review_comment": { "type": "string" }
+        }
+      }
+    }
+}

@@ -7,6 +7,11 @@ const pgSession = require('connect-pg-simple')(session)
 const {Pool} = require('pg');
 const cors = require('cors');
 
+const swaggerUI = require("swagger-ui-express");
+const toiletsRouter = require("./routes/toilets");
+const reviewsRouter = require("./routes/reviews");
+const openapi = require("./openapi.json");
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -78,6 +83,10 @@ app.get("/database", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.use(toiletsRouter)
+app.use(reviewsRouter)
+app.use("/api/v1/api-docs", swaggerUI.serve, swaggerUI.setup(openapi));
 
 app.listen(3000, () => {
   console.log(`Server running at http://localhost:3000`);
