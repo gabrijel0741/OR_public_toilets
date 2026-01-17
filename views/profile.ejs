@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <title>User Profile</title>
+    <meta name="description" content="An open dataset about public toilets in the city of Zagreb, Croatia. Available in CSV and JSON format.">
+    <meta name="keywords" content="public toilets, toilets dataset, csv, json, open data, toilets Zagreb">
+    <meta name="author" content="Gabrijel Krizmanić">
+
+    <link rel="alternate" type="text/csv" href="public_toilets.csv" title="Public toilets (CSV)">
+    <link rel="alternate" type="application/json" href="public_toilets.json" title="Public toilets (JSON)">
+
+    <style>
+        body{
+            background-color: #e1e0e0;
+        }
+        .readme-table, .attributes-table{
+            border-spacing: 0px;
+        }
+        .readme-table tbody tr:nth-child(even){
+            background-color: #d7f0f0;
+        }
+        .readme-table tbody tr:nth-child(odd){
+            background-color: white;
+        }
+        .readme-table tbody tr td{
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid gray;
+        }
+        .db-description{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .naslov-dwnlds{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 160px;
+            align-items: center;
+        }
+        
+        .table-redirect{
+            width: 120px;
+            background-color: gray;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .attributes-table tbody tr td{
+            padding: 2px 12px 2px 12px;
+            border-bottom: 1px solid black;
+        }
+        .attributes-table thead tr td{
+            padding: 2px 12px 2px 12px;
+            border-bottom: 3px solid black;
+        }
+        .dwnlds-div{
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+        }
+        .user-info-div{
+            border: 1px solid gray;
+            padding: 16px;
+            width: 400px;
+            background-color: white;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            margin: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="naslov-dwnlds">
+            <div class="dwnlds-div">
+                <a class="table-redirect" href="/">Povratak na glavnu stranicu</a>
+            </div>
+        </div> 
+        <div class="user-div">
+            <h2>Korisničke Informacije</h2>
+            <div class="user-info-div">
+                <div class="user-information">
+                    <label for="user-id"><strong>Korisnički ID:</strong></label>
+                    <span id="user-id"><%= user.sub %></span>
+                </div>
+
+                <div class="user-information">
+                    <label for="user-name"><strong>Ime korisnika:</strong></label>
+                    <span id="user-name"><%= user.name %></span>
+                </div>
+
+                <div class="user-information">
+                    <label for="user-email"><strong>Email:</strong></label>
+                    <span id="user-email"><%= user.email %></span>
+                </div>
+
+                <div class="user-information">
+                    <label for="user-nickname"><strong>Nadimak:</strong></label>
+                    <span id="user-nickname"><%= user.nickname %></span>
+                </div>
+            </div>
+        </div>      
+    </div>
+</body>

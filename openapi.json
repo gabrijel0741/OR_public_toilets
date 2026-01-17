@@ -970,24 +970,47 @@
       "Toilet": {
         "type": "object",
         "properties": {
+          "@context": {
+            "type": "object",
+            "properties": {
+              "place": { "type": "string", "example": "https://schema.org/Place" },
+              "address": { "type": "string", "example": "https://schema.org/PostalAddress" },
+              "geo": { "type": "string", "example": "https://schema.org/GeoCoordinates" }
+            }
+          },
           "toilet_id": { "type": "integer" },
           "name": { "type": "string" },
-          "address": { "type": "string" },
-          "city": { "type": "string" },
-          "postal_code": { "type": "string" },
-          "latitude": { "type": "number" },
-          "longitude": { "type": "number" },
+          "regular_toilets": { "type": "integer" },
+          "urinals": { "type": "integer" },
+          "toilets_for_disabled": { "type": "boolean" },
+          "disabled_toilets": { "type": "integer" },
+          "fee_amount": { "type": "number" },
           "working_hours": { "type": "string" },
           "unisex": { "type": "boolean" },
           "baby_changing_station": { "type": "boolean" },
-          "toilets_for_disabled": { "type": "boolean" },
-          "regular_toilets": { "type": "integer" },
-          "urinals": { "type": "integer" },
-          "disabled_toilets": { "type": "integer" },
           "maintenance": { "type": "string" },
           "last_date_renovated": { "type": "string", "format": "date" },
           "free_of_charge": { "type": "boolean" },
-          "fee_amount": { "type": "number" }
+          "place": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "object",
+                "properties": {
+                  "streetAddress": { "type": "string" },
+                  "addressLocality": { "type": "string" },
+                  "postalCode": { "type": "string" }
+                }
+              },
+              "geo": {
+                "type": "object",
+                "properties": {
+                  "latitude": { "type": "number" },
+                  "longitude": { "type": "number" }
+                }
+              }
+            }
+          }
         }
       },
       "Review": {
@@ -1012,30 +1035,59 @@
       },
       "ToiletWithReview": {
         "type": "object",
-        "required": ["review_user","review_user_rating","toilet_id"],
         "properties": {
+          "@context": {
+            "type": "object",
+            "properties": {
+              "place": { "type": "string", "example": "https://schema.org/Place" },
+              "address": { "type": "string", "example": "https://schema.org/PostalAddress" },
+              "geo": { "type": "string", "example": "https://schema.org/GeoCoordinates" },
+              "review": { "type": "string", "example": "https://schema.org/Review" }
+            }
+          },
           "toilet_id": { "type": "integer" },
           "name": { "type": "string" },
-          "address": { "type": "string" },
-          "city": { "type": "string" },
-          "postal_code": { "type": "string" },
-          "latitude": { "type": "number" },
-          "longitude": { "type": "number" },
+          "regular_toilets": { "type": "integer" },
+          "urinals": { "type": "integer" },
+          "toilets_for_disabled": { "type": "boolean" },
+          "disabled_toilets": { "type": "integer" },
+          "fee_amount": { "type": "number" },
           "working_hours": { "type": "string" },
           "unisex": { "type": "boolean" },
           "baby_changing_station": { "type": "boolean" },
-          "toilets_for_disabled": { "type": "boolean" },
-          "regular_toilets": { "type": "integer" },
-          "urinals": { "type": "integer" },
-          "disabled_toilets": { "type": "integer" },
           "maintenance": { "type": "string" },
           "last_date_renovated": { "type": "string", "format": "date" },
           "free_of_charge": { "type": "boolean" },
-          "fee_amount": { "type": "number" },
-          "review_user": { "type": "string" },
-          "review_user_rating": { "type": "integer", "minimum": 1, "maximum": 5 },
-          "review_comment": { "type": "string" }
+          "place": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "object",
+                "properties": {
+                  "streetAddress": { "type": "string" },
+                  "addressLocality": { "type": "string" },
+                  "postalCode": { "type": "string" }
+                }
+              },
+              "geo": {
+                "type": "object",
+                "properties": {
+                  "latitude": { "type": "number" },
+                  "longitude": { "type": "number" }
+                }
+              }
+            }
+          },
+          "review": {
+            "type": "object",
+            "properties": {
+              "identifier": { "type": "integer" },
+              "name": { "type": "string" },
+              "contentRating": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "comment": { "type": "string" }
+            }
+          }
         }
-      }
     }
+  }
 }

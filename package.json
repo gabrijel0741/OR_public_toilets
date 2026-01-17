@@ -13,6 +13,9 @@
     "pg": "8.6.0",
     "cors":"2.8.5",
     "swagger-ui-express":"5.0.1",
-    "swagger-jsdoc": "6.2.8"
+    "swagger-jsdoc": "6.2.8",
+    "express-openid-connect": "2.19.4",
+    "json2csv":"6.0.0-alpha.2",
+    "fs":"0.0.1-security"
   }
 }

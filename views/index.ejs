@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<head>
+    <title>OR Public Toilets Data (CSV / JSON)</title>
+    <meta name="description" content="An open dataset about public toilets in the city of Zagreb, Croatia. Available in CSV and JSON format.">
+    <meta name="keywords" content="public toilets, toilets dataset, csv, json, open data, toilets Zagreb">
+    <meta name="author" content="Gabrijel Krizmanić">
+
+    <link rel="alternate" type="text/csv" href="public_toilets.csv" title="Public toilets (CSV)">
+    <link rel="alternate" type="application/json" href="public_toilets.json" title="Public toilets (JSON)">
+
+    <style>
+        body{
+            background-color: #e1e0e0;
+        }
+        .readme-table, .attributes-table{
+            border-spacing: 0px;
+        }
+        .readme-table tbody tr:nth-child(even){
+            background-color: #d7f0f0;
+        }
+        .readme-table tbody tr:nth-child(odd){
+            background-color: white;
+        }
+        .readme-table tbody tr td{
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid gray;
+        }
+        .db-description{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .naslov-dwnlds{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 160px;
+            align-items: center;
+        }
+        
+        .table-redirect{
+            width: 120px;
+            background-color: gray;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .attributes-table tbody tr td{
+            padding: 2px 12px 2px 12px;
+            border-bottom: 1px solid black;
+        }
+        .attributes-table thead tr td{
+            padding: 2px 12px 2px 12px;
+            border-bottom: 3px solid black;
+        }
+        .dwnlds-div{
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="naslov-dwnlds">
+            <h1 style="font-size: xx-large;">OR Public Toilets</h1>
+            <div class="dwnlds-div">
+                <% if (!isAuthenticated) { %>
+                <a class="table-redirect" href="/login">Prijava</a>
+                <% } else { %>
+                <a class="table-redirect" href="/profile">Korisnički profil</a>
+                <a class="table-redirect" href="/export">Osvježi Preslike</a>
+                <a class="table-redirect" href="/logout">Odjava</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="db-description">
+            <div>
+                <h2>Description of the attributes</h2>
+                <table class="attributes-table">
+                    <thead>
+                        <tr>
+                            <td><strong>Attrbute name</strong></td>
+                            <td><strong>Attribute description</strong></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>toilet_id</strong></td>
+                            <td>Id of the public toilet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>review_id</strong></td>
+                            <td>Id of the review</td>
+                        </tr>
+                        <tr>
+                            <td><strong>name</strong></td>
+                            <td>Name of the public toilet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>address</strong></td>
+                            <td>Address of where the toilet is located </td>
+                        </tr>
+                        <tr>
+                            <td><strong>city</strong></td>
+                            <td>City where the toilet is located </td>
+                        </tr>
+                        <tr>
+                            <td><strong>postal_code</strong></td>
+                            <td>Postal code of the city</td>
+                        </tr>
+                        <tr>
+                            <td><strong>latitude</strong></td>
+                            <td>North-south position</td>
+                        </tr>
+                        <tr>
+                            <td><strong>longitude</strong></td>
+                            <td>West-east position</td>
+                        </tr>
+                        <tr>
+                            <td><strong>working_hours</strong></td>
+                            <td>Time of the day when the toilet is available</td>
+                        </tr>
+                        <tr>
+                            <td><strong>unisex</strong></td>
+                            <td>Do male and female genders use the same facilities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>baby_changing_station</strong></td>
+                            <td>Does the toilet contain a room for changing baby diapers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>toilets_for_disabled</strong></td>
+                            <td>Does the toilet contain toilets for disabled people</td>
+                        </tr>
+                        <tr>
+                            <td><strong>regular_toilets</strong></td>
+                            <td>How many regular toilets are there</td>
+                        </tr>
+                        <tr>
+                            <td><strong>urinals</strong></td>
+                            <td>How many urinals are there</td>
+                        </tr>
+                        <tr>
+                            <td><strong>disabled_toilets</strong></td>
+                            <td>How many toilets for disabled people are there</td>
+                        </tr>
+                        <tr>
+                            <td><strong>maintenance</strong></td>
+                            <td>How often does the staff replenish consumables and clean the space</td>
+                        </tr>
+                        <tr>
+                            <td><strong>last_date_renovated</strong></td>
+                            <td>Last date of renovation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>free_of_charge</strong></td>
+                            <td>Is the use of the public toilet free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>fee_amount</strong></td>
+                            <td>How much do you have to pay to use the toilets</td>
+                        </tr>
+                        <tr>
+                            <td><strong>review_user</strong></td>
+                            <td>Username of the reviewer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>review_user_rating</strong></td>
+                            <td>Rating which the user gave for the toilet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>review_comment</strong></td>
+                            <td>Comment which the user gave for the toilet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h2>About the dataset</h2>
+                <table class="readme-table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Author</strong></td>
+                            <td>Gabrijel Krizmanić</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Version</strong></td>
+                            <td>2.0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Language</strong></td>
+                            <td>English</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data formats used</strong></td>
+                            <td>JSON, CSV</td>
+                        </tr>
+                        <tr>
+                            <td><strong>License</strong></td>
+                            <td>CC0 1.0 Universal (Public Domain Dedication)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Creation date</strong></td>
+                            <td>24.10.2025</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Author</strong></td>
+                            <td>Gabrijel Krizmanic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purpose of creation</strong></td>
+                            <td>Example of the process of creating a new open data structure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spatial coverage</strong></td>
+                            <td>Zagreb, Croatia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number of entries</strong></td>
+                            <td>23 (For 10 public toilets)  </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number of attributes</strong></td>
+                            <td>22</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>

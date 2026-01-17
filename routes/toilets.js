@@ -39,7 +39,46 @@ router.get("/api/v1/toilets", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No toilets found", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "All toilets found", response: result.rows });
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates",
+                "review": "https://schema.org/Review"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            },
+            "review": {
+                "identifier": toilet.review_id,
+                "name": toilet.review_user,
+                "contentRating": toilet.review_user_rating,
+                "comment": toilet.review_comment
+            }
+        }));
+    return res.status(200).json({ status: "OK",message: "All toilets found", response: jsonLdData });
   }
   catch{
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
@@ -63,7 +102,8 @@ router.post("/api/v1/toilets", async (req, res) => {
     if(!result.rows[0]){
       return res.status(400).json({ status: "Bad request",message: "Toilet could not be registered", response: null });
     }
-    res.status(201).json({ status: "OK",message: "Successfully registered a new toilet", response: result.rows[0]});
+    
+    res.status(201).json({ status: "OK",message: "Successfully registered a new toilet", response: result.rows[0] });
  
   } catch (err){
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: err });
@@ -86,7 +126,8 @@ router.put("/api/v1/toilets", async (req, res) => {
     if(!result.rows[0]){
       return res.status(400).json({ status: "Bad request",message: "Toilet could not be updated", response: null });
     }
-    res.status(201).json({ status: "OK",message: "Successfully updated an existing toilet", response: result.rows[0]});
+    
+    res.status(201).json({ status: "OK",message: "Successfully updated an existing toilet", response: result.rows[0] });
   } catch (err){
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: err });
   }
@@ -101,7 +142,49 @@ router.get("/api/v1/toilets/:id", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No toilets found with the given ID have been found", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "A list of all public toilets with given ID have been found", response: result.rows });
+    var toilet = result.rows[0];
+
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates",
+                "review": "https://schema.org/Review"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            },
+            "review": {
+                "identifier": toilet.review_id,
+                "name": toilet.review_user,
+                "contentRating": toilet.review_user_rating,
+                "comment": toilet.review_comment
+            }
+        }));
+
+    return res.status(200).json({ status: "OK",message: "A list of all public toilets with given ID have been found", response: jsonLdData });
   }
   catch(err){
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
@@ -132,7 +215,40 @@ router.get("/api/v1/toilets_by_city/:city_name", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No toilets have been found in the chosen city", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "A list of all public toilets for the chosen city have been found", response: result.rows });
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            }
+        }));
+
+    return res.status(200).json({ status: "OK",message: "A list of all public toilets for the chosen city have been found", response: jsonLdData });
   }
   catch(err){
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
@@ -147,7 +263,39 @@ router.get("/api/v1/toilets_by_postal_code/:postal_code", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No public toilets have been found by the given postal code", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "A list of all public toilets for the chosen postal code have been found", response: result.rows });
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            }
+        }));
+    return res.status(200).json({ status: "OK",message: "A list of all public toilets for the chosen postal code have been found", response: jsonLdData });
   }
   catch(err){
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
@@ -160,7 +308,39 @@ router.get("/api/v1/toilets_for_disabled", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No public toilets for disabled people have been found", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "All toilets for disabled people found", response: result.rows });
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            }
+        }));
+    return res.status(200).json({ status: "OK",message: "All toilets for disabled people found", response: jsonLdData });
   }
   catch{
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
@@ -173,7 +353,39 @@ router.get("/api/v1/toilets_with_baby_station", async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ status: "Not found",message: "No public toilets with baby changing stations have been found", response: null });
     }
-    return res.status(200).json({ status: "OK",message: "All toilets with baby stations found", response: result.rows });
+    const jsonLdData = result.rows.map(toilet => ({
+            "@context": {
+                "place": "https://schema.org/Place",
+                "address": "https://schema.org/PostalAddress",
+                "geo": "https://schema.org/GeoCoordinates"
+            },
+            "name": toilet.name,
+            "toilet_id": toilet.toilet_id,
+            "regular_toilets": toilet.regular_toilets,
+            "urinals": toilet.urinals,
+            "toilets_for_disabled": toilet.toilets_for_disabled,
+            "disabled_toilets": toilet.disabled_toilets,
+            "fee_amount": toilet.fee_amount,
+            "working_hours": toilet.working_hours,
+            "unisex": toilet.unisex,
+            "baby_changing_station": toilet.baby_changing_station,
+            "maintenance": toilet.maintenance,
+            "last_date_renovated": toilet.last_date_renovated,
+            "free_of_charge": toilet.free_of_charge,
+            "fee_amount": toilet.fee_amount,
+            "place":{
+                "address": {
+                    "streetAddress": toilet.address,
+                    "addressLocality": toilet.city,
+                    "postalCode": toilet.postal_code
+                },
+                "geo": {
+                    "latitude": toilet.latitude,
+                    "longitude": toilet.longitude
+                },
+            }
+        }));
+    return res.status(200).json({ status: "OK",message: "All toilets with baby stations found", response: jsonLdData });
   }
   catch{
     res.status(500).json({ status: "Service unavailable",message: "Internal server error", response: null });
